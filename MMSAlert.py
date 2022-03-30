@@ -5,31 +5,16 @@ from email.mime.multipart import MIMEMultipart
 
 class MMSAlert:
     def __init__(self):
-        if 'CONFIG' not in os.listdir():
-            self.init()
-        else:
-            file  = open('CONFIG', 'r')
-            self.email = file.readline().strip('\n')
-            self.pas = file.readline().strip('\n')
-            self.sms_gateway = file.readline().strip('\n')
-            self.smtp = file.readline().strip('\n')
-            self.port = int(file.readline().strip('\n'))
+        from config import config
+
+        self.email = config['email']
+        self.pas = config['pas']
+        self.sms_gateway = config['sms_gateway']
+        self.smtp = config['smtp']
+        self.port = int(config['port'])
+
         self.server = None
 
-    def init(self):
-        self.email       = input("Email: ")
-        self.pas         = input("Passw: ")
-        self.sms_gateway = input('Phone Number: ') + '@' + input('MMS Gateway: ')
-        self.smtp        = input("SMTP: ")
-        self.port        = int(input("Port: "))
-
-        file = open('CONFIG', 'w')
-        file.write(self.email + '\n')
-        file.write(self.pas + '\n')
-        file.write(self.sms_gateway + '\n')
-        file.write(self.smtp + '\n')
-        file.write(str(self.port) + '\n')
-        file.close()
 
     def start(self):
         self.server = smtplib.SMTP(self.smtp, self.port)
