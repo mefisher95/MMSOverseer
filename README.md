@@ -7,7 +7,7 @@ https://github.com/mefisher95/MMSAlert
 
 ## Setup:
 
-### Modify MMSOverseer.py to suit your needs
+### Modify ```MMSOverseer.py``` to suit your needs
 - This script is meant to be a boiler plate for a user to tailor for their usecase. 
 - This script will be compiled down into an executable and will process any program fed into it.
 - After any modification, this script will need to be recompiled for the changes to take effect.
@@ -21,7 +21,16 @@ https://github.com/mefisher95/MMSAlert
   - Convert MMSOverseer.py into an Executable
   - Clean up anything created during the config phase
 
-### For configuration of SMTP
+### SMTP Configuration
+SMTP is the ability to route messages over the internet and phone lines using your email server as a proxy.
+
+Configuration of SMTP requires a few steps, some of which are a bit opaque.
+First and foremost, you must enable Less Secure Apps with Google, or the 
+equivilant for your email provider. 
+
+Following that, you must provide the relevent information about your email service provider and your phone carrier, as detailed below.
+All relevent information is freely available online, and only requires a quick websearch to find.
+
   - Less secue app access
 	  - can be found in the Google Account Security tab. Enable to
 	    allow SMTP to access your Gmail  
@@ -38,6 +47,10 @@ https://github.com/mefisher95/MMSAlert
 	  - This is unqiue for each email provider, and can be found online
 	  - Ex: Gmail has 3: 25, 465, or 587
 	  - Try each until one works
+
+All information is stored into a temporary ```config.py``` file, which is compiled together with the ```MMSOverseer.py``` script.
+
+This file is deleted during the cleanup phase in ```compile.py```
 
 ## Use
 ### To Use, run ```MMSObserver.exe [program name with arguments]```
